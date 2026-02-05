@@ -17,6 +17,7 @@ export const lazyPlugin = {
           if (isIntersecting) {
             // 进入视口区域
             el.src = binding.value;
+            stop(); // 停止监控，避免重复加载图片
           }
         });
       },
