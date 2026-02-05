@@ -1,9 +1,9 @@
-<script setup></script>
+<script setup>
+</script>
 
 <template>
-  <div>
-    <el-button type="primary">按他</el-button>
-  </div>
+  <!-- 一级路由出口 -->
+  <router-view/>
 </template>
 
 <style scoped></style>
