@@ -4,11 +4,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/home",
+      path: "/",
       component: () => import("@/views/Layout/index.vue"),
       children: [
         {
-          // 默认二级路由： path为空
+          path: "",
+          component: () => import("@/views/Home/index.vue"),
+        },
+        {
           path: "category",
           component: () => import("@/views/Category/index.vue"),
         },
@@ -17,10 +20,6 @@ const router = createRouter({
     {
       path: "/login",
       component: () => import("@/views/Login/index.vue"),
-    },
-    {
-      path: "/",
-      redirect: "/home",
     },
   ],
 });
