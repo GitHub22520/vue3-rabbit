@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+// import { onMounted } from 'vue'
 // 导入组件
 import HomeBanner from './components/HomeBanner.vue';
 import HomeCategory from './components/HomeCategory.vue';
