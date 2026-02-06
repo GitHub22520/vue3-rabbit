@@ -3,7 +3,9 @@
     <LayoutNav/>
     <LayoutHeader/>
 
-    <router-view></router-view>
+    <!-- 添加 key,破会复用机制，强制销毁重建 -->
+    <!-- <router-view :key="$route.fullPath"></router-view> -->
+    <router-view/>
 
     <LayoutFooter/>
 </template>
