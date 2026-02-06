@@ -20,3 +20,10 @@ export function findHotAPI() {
     url: "/home/hot",
   });
 }
+
+/** @returns {Promise<any>} */
+export function getGoodsAPI() {
+  return httpInstance({
+    url: "/home/goods",
+  });
+}
