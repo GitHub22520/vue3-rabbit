@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router';
 
 import DetailHot from '@/views/Detail/components/DetailHot.vue'
 import ImageView from '@/components/ImageView/index.vue'
+import XtxSku from "@/components/XtxSku/index.vue"
 
 const route = useRoute()
 // 获取商品详情
@@ -19,6 +20,12 @@ const getGoods = async () => {
 onMounted(() => {
   getGoods();
 })
+
+// sku 规则被操作时
+const skuchange = (sku) => {
+  console.log(sku);
+  
+}
 </script>
 
 <template>

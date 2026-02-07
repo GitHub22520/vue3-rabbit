@@ -2,9 +2,11 @@
 import { ref, useTemplateRef, watch } from 'vue'
 import { useMouseInElement } from '@vueuse/core'
 
+// 适配图片列表
 defineProps({
   imageList: {
-    type: Array
+    type: Array,
+    default: () => []
   }
 })
 // 图片列表
@@ -49,11 +51,11 @@ watch([elementX, elementY], () => {
   }
 
   // 边界处理
-  if (elementX.value > 300) { left.value == 200 }
-  if (elementX.value < 100) { left.value == 0 }
+  if (elementX.value > 300) { left.value = 200 }
+  if (elementX.value < 100) { left.value = 0 }
 
-  if (elementY.value > 300) { top.value == 200 }
-  if (elementY.value < 100) { top.value == 0 }
+  if (elementY.value > 300) { top.value = 200 }
+  if (elementY.value < 100) { top.value = 0 }
 
   // 控制大图的显示
   positionX.value = - left.value * 2
