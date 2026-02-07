@@ -28,10 +28,17 @@ const enterhandler = (i) => {
 const target = useTemplateRef('target')
 const { elementX, elementY, isOutside } = useMouseInElement(target)
 // 3.控制滑块跟随鼠标移动（监听 elementX/elementY 变化，一旦变化，重新设置 left/top
+// 滑块位置
 const left = ref(0)
 const top = ref(0)
+// 大图位置
+const positionX = ref(0)
+const positionY = ref(0)
+
 watch([elementX, elementY], () => {
   //  console.log("X,Y 变化了");
+  // 如果鼠标不在盒子里，不执行后面的逻辑
+  if(isOutside.value) return
   // 横向
   if (elementX.value > 100 && elementX.value < 300) {
     left.value = elementX.value - 100
@@ -48,6 +55,9 @@ watch([elementX, elementY], () => {
   if (elementY.value > 300) { top.value == 200 }
   if (elementY.value < 100) { top.value == 0 }
 
+  // 控制大图的显示
+  positionX.value = - left.value * 2
+  positionY.value = - top.value * 2
 })
 </script>
 

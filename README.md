@@ -4,7 +4,7 @@
 
 - 思路：
 - - 获取当前的鼠标在盒子内的相对位置（useMouseInElement），控制货快跟随鼠标移动（left/top）
-    ![alt text](image.png)
+    ![alt text](public/images/image.png)
 
 1. 有效移动范围内的计算逻辑
 
@@ -15,3 +15,7 @@
 
 - - 横向：elementX > 300, left = 200; elementX < 100, left = 0
 - - 纵向：elementY > 300, left = 200; element < 100, left = 0
+
+### 放大图片显示
+
+![alt text](public/images/image-1.png)
