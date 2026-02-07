@@ -26,6 +26,10 @@ const router = createRouter({
       component: () => import("@/views/Login/index.vue"),
     },
   ],
+  // 路由行为配置项
+  scrollBehavior() {
+    return { top: 0 };
+  },
 });
 
 export default router;
