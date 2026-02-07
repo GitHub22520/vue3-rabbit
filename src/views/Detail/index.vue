@@ -20,19 +20,19 @@ onMounted(() => {
 
 <template>
   <div class="xtx-goods-page">
-    <div class="container">
+    <div class="container" v-if="goods.details">
       <!-- 面包屑导航 -->
       <div class="bread-container">
         <el-breadcrumb separator=">">
-          <el-breadcrumb-item to="/">首页</el-breadcrumb-item>
-          <!-- 错误原因：
-            goods一开始为 空 对象，{}.categories -> undefined -> undefined[1] 
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <!-- 
+            goods一开始为控对象，{}.categories -> undefined -> undefined[1] 
             1.可选链的语法?. 在数组前加?.
             2.v-if手动控制渲染时机，有数据是才渲染
             -->
-          <el-breadcrumb-item :to="{path:`/category/${goods.categories?.[1].id}`}">{{ goods.categories?.[1].name }}
+          <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{goods.categories[1].name}}
           </el-breadcrumb-item>
-          <el-breadcrumb-item :to="{path:`/category/sub/${goods.categories?.[0].id}`}">{{ goods.categories?.[0].name  }}
+          <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{ goods.categories[0].name }}
           </el-breadcrumb-item>
           <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
         </el-breadcrumb>
@@ -63,7 +63,7 @@ onMounted(() => {
                 </li>
                 <li>
                   <p>品牌信息</p>
-                  <p>{{ goods.brand.name }}</p>
+                  <p>{{ goods.brand?.name }}</p>
                   <p><i class="iconfont icon-dynamic-filling"></i>品牌主页</p>
                 </li>
               </ul>
