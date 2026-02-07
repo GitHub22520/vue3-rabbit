@@ -1,44 +1,17 @@
-# vue3-rabbit
+## 放大镜效果
 
-This template should help get you started developing with Vue 3 in Vite.
+### 滑块跟随鼠标移动
 
-## Recommended IDE Setup
+- 思路：
+- - 获取当前的鼠标在盒子内的相对位置（useMouseInElement），控制货快跟随鼠标移动（left/top）
+    ![alt text](image.png)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+1. 有效移动范围内的计算逻辑
 
-## Recommended Browser Setup
+- - 横向：100 < elementX < 300，left = elementX - 滑块宽度一半
+- - 纵向：100 < elementY < 300，top = elementY - 滑块高度一半
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+2. 边界距离控制
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- - 横向：elementX > 300, left = 200; elementX < 100, left = 0
+- - 纵向：elementY > 300, left = 200; element < 100, left = 0
