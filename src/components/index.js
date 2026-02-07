@@ -1,15 +1,14 @@
-//把compomens里的所有组件全局注册
-import ImageView from '@/components/ImageView/index.vue'
-import Sku from '@/components/XtxSku/index.vue'
+// 把 components 中的所有组件进行全局化注册
+// 通过插件的方式
 
-// const { install } = require("element-plus");
+// 导入所有组件
+import ImageView from "./ImageView/index.vue";
+import Sku from "./XtxSku/index.vue";
 
-//通过组件的方式
 export const componentPlugin = {
-    install(app) {
-        //app的方法
-        //app.components('组件名称', 组件配置对象)
-        app.component('XtxImageView', ImageView)
-        app.component('XtxSku', Sku)
-    }
-}
+  install(app) {
+    // app.component("组件名", 组件对象)
+    app.component("XtxImageView", ImageView);
+    app.component("XtxSku", Sku);
+  },
+};
