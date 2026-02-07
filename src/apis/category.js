@@ -19,3 +19,22 @@ export function getCategoryFilterAPI(id) {
     },
   });
 }
+
+// 获取导航数据
+/**
+ * @description 获取导航数据
+ * @data {
+ * categoryId: number
+ * page: number
+ * pageSize: number
+ * sortField: 'pubilshTime' | 'orderNum' | 'evaluateNum'
+ * }
+ * @return {*}}
+ */
+export function getSubCategoryAPI(data) {
+  return httpInstance({
+    url: "/category/goods/temporary",
+    method: "post",
+    data,
+  });
+}
