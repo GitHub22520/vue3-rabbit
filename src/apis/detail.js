@@ -10,4 +10,16 @@ const getDetail = (id) => {
   });
 };
 
-export { getDetail };
+// 热榜信息获取
+const getHotGoodsAPI = ({ id, type, limit = 3 }) => {
+  return httpInstance({
+    url: "/goods/hot",
+    params: {
+      id,
+      type,
+      limit,
+    },
+  });
+};
+
+export { getDetail, getHotGoodsAPI };

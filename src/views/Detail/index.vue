@@ -3,6 +3,8 @@ import { getDetail } from '@/apis/detail'
 import {ref, onMounted} from 'vue'
 import { useRoute } from 'vue-router';
 
+import DetailHot from '@/views/Detail/components/DetailHot.vue'
+
 const route = useRoute()
 // 获取商品详情
 const goods = ref({})
