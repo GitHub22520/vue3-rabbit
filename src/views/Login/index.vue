@@ -46,6 +46,22 @@ const rules = {
   ]
 }
 
+// 表单提交
+// 获取表单实例
+const formRef = ref(null)
+const doLogin = () => {
+  formRef.value.validate((value) => {
+    // value：所有项都通过了校验
+    // console.log(value);
+    if(value){
+      console.log('登录');
+      
+    }else{
+      console.log('没通过校验');
+      
+    }
+  })
+}
 </script>
 
 
