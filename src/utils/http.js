@@ -5,6 +5,7 @@
      3.响应拦截器：可以简化服务器返回的数据，处理 http 的网络错误
 */
 import axios from "axios";
+import "element-plus/theme-chalk/el-message.css";
 import { ElMessage } from "element-plus";
 
 // 利用 axios.create 方法，创建一个 axios 实例:可以设置基础路径、超时时间的设置
@@ -31,13 +32,21 @@ httpInstance.interceptors.response.use(
   },
   (error) => {
     // 处理 http 网络错误
+    console.log(error.response);
+
     let status = error.response.status;
     switch (status) {
+      case 400:
+        ElMessage({
+          type: "error",
+          message: error.response.data.message,
+        });
+        break;
       case 404:
         // 错误信息提示
         ElMessage({
           type: "error",
-          message: error.message || "请求资源不存在",
+          message: error.response.data.message || "请求资源不存在",
         });
         break;
       case 401:
@@ -60,7 +69,7 @@ httpInstance.interceptors.response.use(
         });
         break;
     }
-    return Promise.reject(new Error(error.message));
+    return Promise.reject(new Error(error.response.data.message));
   },
 );
 
