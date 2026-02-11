@@ -9,6 +9,7 @@ import "element-plus/theme-chalk/el-message.css";
 import { ElMessage } from "element-plus";
 
 import { useUserStore } from "@/stores/user.js";
+import router from "@/router";
 
 // 利用 axios.create 方法，创建一个 axios 实例:可以设置基础路径、超时时间的设置
 const httpInstance = axios.create({
@@ -27,7 +28,7 @@ httpInstance.interceptors.request.use(
     const token = userStore.userInfo.token;
     // console.log(",,,", token);
     if (token) {
-      config.headers.Authorization = `bearer ${token}`;
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -59,12 +60,17 @@ httpInstance.interceptors.response.use(
           message: error.response.data.message || "请求资源不存在",
         });
         break;
-      case 401:
+      case 401: {
         ElMessage({
           type: "error",
-          message: "参数有问题",
+          message: error.response.data.message || "参数有问题",
         });
+        // 清除用户信息
+        const userStore = useUserStore();
+        userStore.clearUserInfo();
+        router.push("/login");
         break;
+      }
       case 403:
         // 错误信息提示
         ElMessage({
