@@ -40,11 +40,9 @@ const skuchange = (sku) => {
 
 // 添加数量
 const count = ref(1)
-
-const countChange = (count) => {
-  // console.log(count);
-}
-
+// const countChange = (count) => {
+//   // console.log(count);
+// }
 // 添加购物车
 const cartStore = useCartStore()
 const addCart = () => {

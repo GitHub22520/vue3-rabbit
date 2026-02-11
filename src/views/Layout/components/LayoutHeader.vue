@@ -3,6 +3,8 @@ import { onMounted,} from 'vue'
 // 使用 pinia 中的数据
 import { useCategoryStore } from '@/stores/categroy';
 
+import HeaderCart from '@/views/Layout/components/HeaderCart.vue'
+
 const categoryStore = useCategoryStore();
 
 onMounted(() => {
