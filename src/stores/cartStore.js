@@ -44,12 +44,26 @@ export const useCartStore = defineStore(
     // 总价
     const allPrice = computed(() => cartList.value.reduce((a, c) => a + c.count * c.price, 0));
 
+    // 单选功能
+    const singleCheck = (skuId, selected) => {
+      // 通过 skuId 找到对应的商品对象，并修改 selected 属性
+      const item = cartList.value.find((item) => item.skuId === skuId);
+      item.selected = selected;
+    };
+
+    // 已选商品计算
+    const selectedCount = computed(() =>
+      cartList.value.reduce((a, c) => a + (c.selected ? c.count : 0), 0),
+    );
+
     return {
       cartList,
       allcount,
       allPrice,
+      selectedCount,
       addCart,
       delCart,
+      singleCheck,
     };
   },
   {
