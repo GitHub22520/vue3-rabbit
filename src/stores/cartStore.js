@@ -51,9 +51,28 @@ export const useCartStore = defineStore(
       item.selected = selected;
     };
 
-    // 已选商品计算
+    // 是否全选
+    const isAll = computed(() => cartList.value.every((item) => item.selected));
+
+    // 全选功能
+    const allCheck = (selected) => {
+      // 将 cartList 中的每一项的 selected 设置为当前全选框的状态
+      cartList.value.forEach((item) => (item.selected = selected));
+    };
+
+    // 已选数量
+    // const selectedCount = computed(() =>
+    //   cartList.value.reduce((a, c) => a + (c.selected ? c.count : 0), 0),
+    // );
     const selectedCount = computed(() =>
-      cartList.value.reduce((a, c) => a + (c.selected ? c.count : 0), 0),
+      cartList.value.filter((item) => item.selected).reduce((a, c) => a + c.count, 0),
+    );
+    // 已选商品总价
+    // const selectedPrice = computed(() =>
+    //   cartList.value.reduce((a, c) => a + (c.selected ? c.count * c.price : 0), 0),
+    // );
+    const selectedPrice = computed(() =>
+      cartList.value.filter((item) => item.selected).reduce((a, c) => a + c.count * c.price, 0),
     );
 
     return {
@@ -61,9 +80,12 @@ export const useCartStore = defineStore(
       allcount,
       allPrice,
       selectedCount,
+      selectedPrice,
+      isAll,
       addCart,
       delCart,
       singleCheck,
+      allCheck,
     };
   },
   {

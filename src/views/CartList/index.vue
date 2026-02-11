@@ -5,9 +5,14 @@ const cartStore = useCartStore()
 
 //  单选回调
 const singleCheck = (i, selected) => {
-  console.log(i,selected);
+  // console.log(i,selected);
   // 补充 skuId 来表明是哪个订单
   cartStore.singleCheck(i.skuId, selected)
+}
+
+// 全选回调
+const allCheck = (selected) => {
+  cartStore.allCheck(selected)
 }
 </script>
 
@@ -81,7 +86,7 @@ const singleCheck = (i, selected) => {
       <div class="action">
         <div class="batch">
           共 {{ cartStore.allcount }} 件商品，已选择 {{ cartStore.selectedCount }} 件，商品合计：
-          <!-- <span class="red">¥ {{ cartStore.selectedPrice.toFixed(2) }} </span> -->
+          <span class="red">¥ {{ cartStore.selectedPrice.toFixed(2) }} </span>
         </div>
         <div class="total">
           <el-button size="large" type="primary" @click="$router.push('/checkout')">下单结算</el-button>
