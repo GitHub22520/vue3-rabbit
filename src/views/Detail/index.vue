@@ -1,6 +1,6 @@
 <script setup>
 import { getDetail } from '@/apis/detail'
-import {ref, onMounted} from 'vue'
+import {ref, onMounted, watch} from 'vue'
 import { useRoute } from 'vue-router';
 
 import DetailHot from '@/views/Detail/components/DetailHot.vue'
@@ -19,6 +19,15 @@ onMounted(() => {
   getGoods();
 })
 
+// 监听路由参数变化，重新获取数据
+watch(
+  () => route.params.id,
+  (newId) => {
+    if (newId) {
+      getGoods()
+    }
+  }
+)
 // sku 规则被操作时
 const skuchange = (sku) => {
   console.log(sku);
