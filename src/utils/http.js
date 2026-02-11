@@ -8,6 +8,8 @@ import axios from "axios";
 import "element-plus/theme-chalk/el-message.css";
 import { ElMessage } from "element-plus";
 
+import { useUserStore } from "@/stores/user.js";
+
 // 利用 axios.create 方法，创建一个 axios 实例:可以设置基础路径、超时时间的设置
 const httpInstance = axios.create({
   baseURL: "http://pcapi-xiaotuxian-front-devtest.itheima.net", // 基础路径设置，发请求的时候，路径当中会出现 /api
@@ -19,6 +21,14 @@ httpInstance.interceptors.request.use(
   (config) => {
     // config：请求拦截器回调注入的对象（配置对象），配置对象身上最重要的一件事：headers属性
     // 可以通过请求头携带公共参数：token
+    // 从 pinia 中获取 token 数据
+    const userStore = useUserStore();
+    // 如果 token 存在，就携带 token
+    const token = userStore.userInfo.token;
+    // console.log(",,,", token);
+    if (token) {
+      config.headers.Authorization = `bearer ${token}`;
+    }
     return config;
   },
   (error) => Promise.reject(error),

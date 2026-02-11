@@ -4,7 +4,7 @@ import { ref } from "vue";
 
 import { loginAPI } from "@/apis/user";
 
-export const userUserStore = defineStore(
+export const useUserStore = defineStore(
   "user",
   () => {
     // 定义管理用户数据的 state

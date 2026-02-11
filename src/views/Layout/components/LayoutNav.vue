@@ -1,6 +1,6 @@
 <script setup>
-import { userUserStore } from '@/stores/user';
-const userStore = userUserStore()
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore()
 
 </script>
 
