@@ -4,9 +4,12 @@ import { ref } from "vue";
 
 import { loginAPI } from "@/apis/user";
 
+import { useCartStore } from "./cartStore";
+
 export const useUserStore = defineStore(
   "user",
   () => {
+    const cartStore = useCartStore();
     // 定义管理用户数据的 state
     const userInfo = ref({});
     // 定义获取接口数据的 action 函数
@@ -18,6 +21,8 @@ export const useUserStore = defineStore(
     // 退出时清除用户信息
     const clearUserInfo = () => {
       userInfo.value = {};
+      // 退出时，清除购物车数据
+      cartStore.clearCart();
     };
 
     // 以对象的格式把 state 和 action 返回

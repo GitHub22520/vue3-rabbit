@@ -14,13 +14,14 @@ export const useCartStore = defineStore(
     // 定义 state
     const cartList = ref([]);
 
+    // 定义 action
     // 接口获取购物车列表
     const updateNewList = async () => {
       const res = await findNewCartListAPI();
       cartList.value = res.result;
     };
 
-    // 定义 action
+    // 添加购物车操作
     const addCart = async (goods) => {
       // todo: 这里本地购物车和接口购物车中数据并没有互通合并
       const { skuId, count } = goods;
@@ -63,6 +64,11 @@ export const useCartStore = defineStore(
         // 未登录：本地删除
         cartList.value = cartList.value.filter((item) => item.skuId !== skuId);
       }
+    };
+
+    // 清除购物车
+    const clearCart = () => {
+      cartList.value = [];
     };
 
     // 计算属性
@@ -113,6 +119,8 @@ export const useCartStore = defineStore(
       delCart,
       singleCheck,
       allCheck,
+      clearCart,
+      updateNewList,
     };
   },
   {

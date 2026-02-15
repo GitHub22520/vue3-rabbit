@@ -1,7 +1,17 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore';
+import { useUserStore } from '@/stores/userStore'
 
+import { onMounted } from 'vue'
+
+const userStore = useUserStore()
 const cartStore = useCartStore()
+// 组件挂载时获取最新购物车数据
+onMounted(() => {
+  if (userStore.userInfo.token) {
+    cartStore.updateNewList()
+  }
+})
 </script>
 
 <template>
@@ -11,7 +21,7 @@ const cartStore = useCartStore()
     </a>
     <div class="layer">
       <div class="list">
-        
+
         <div class="item" v-for="i in cartStore.cartList" :key="i">
           <RouterLink to="">
             <img :src="i.picture" alt="" />
@@ -28,7 +38,7 @@ const cartStore = useCartStore()
           </RouterLink>
           <i class="iconfont icon-close-new" @click="cartStore.delCart(i.skuId)"></i>
         </div>
-       
+
       </div>
       <div class="foot">
         <div class="total">
@@ -39,7 +49,7 @@ const cartStore = useCartStore()
         <el-button size="large" type="primary" @click="$router.push('/cartlist')">去购物车结算</el-button>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
 <style scoped lang="scss">
