@@ -23,7 +23,6 @@ export const useCartStore = defineStore(
 
     // 添加购物车操作
     const addCart = async (goods) => {
-      // todo: 这里本地购物车和接口购物车中数据并没有互通合并
       const { skuId, count } = goods;
       if (isLogin.value) {
         // 已登录

@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 import { loginAPI } from "@/apis/user";
+import { mergeCartAPI } from "@/apis/cart";
 
 import { useCartStore } from "./cartStore";
 
@@ -16,6 +17,19 @@ export const useUserStore = defineStore(
     const getUserInfo = async ({ account, password }) => {
       const res = await loginAPI({ account, password });
       userInfo.value = res.result;
+      // 登录成功后，合并购物车
+      await mergeCartAPI(
+        cartStore.cartList.map((item) => {
+          return {
+            skuId: item.skuId,
+            selected: item.selected,
+            count: item.count,
+          };
+        }),
+      ).then(() => {
+        // 合并购物车成功后，更新购物车列表
+        cartStore.updateNewList();
+      });
     };
 
     // 退出时清除用户信息
