@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted,} from 'vue'
 // 使用 pinia 中的数据
-import { useCategoryStore } from '@/stores/categroy';
+import { useCategoryStore } from '@/stores/categroyStore';
 
 import HeaderCart from '@/views/Layout/components/HeaderCart.vue'
 

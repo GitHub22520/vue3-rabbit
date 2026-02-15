@@ -19,7 +19,7 @@ import LayoutFooter from './components/LayoutFooter.vue';
 // 导入吸顶导航组件
 import LayoutFixed from './components/LayoutFixed.vue';
 // 触发获取导航列表的 action
-import { useCategoryStore } from '@/stores/categroy';
+import { useCategoryStore } from '@/stores/categroyStore';
 
 const categoryStore = useCategoryStore()
 

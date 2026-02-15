@@ -8,7 +8,7 @@ import axios from "axios";
 import "element-plus/theme-chalk/el-message.css";
 import { ElMessage } from "element-plus";
 
-import { useUserStore } from "@/stores/user.js";
+import { useUserStore } from "@/stores/userStore.js";
 import router from "@/router";
 
 // 利用 axios.create 方法，创建一个 axios 实例:可以设置基础路径、超时时间的设置
