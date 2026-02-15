@@ -19,3 +19,7 @@
 ### 放大图片显示
 
 ![alt text](public/images/image-1.png)
+
+
+### 项目访问地址
+http://134.175.232.176/
